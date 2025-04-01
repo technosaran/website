@@ -2,6 +2,7 @@
 
 /* General Styling */
 :root {
+    --focus-outline-color: #00aaff; /* Added focus color */
     --primary-color: #007bff;
     --secondary-color: #6c757d;
     --text-color: #fff;
@@ -19,8 +20,8 @@ html {
     font-size: 16px; /* Base font size for rem units */
 }
 
+/* Removed global h1-h6 font-size rule to allow specific styles to create hierarchy */
 h1, h2, h3, h4, h5, h6 {
-    font-size: 1.3rem; /* Use rem */
     margin-top: 0; /* Remove default top margin */
 }
 
@@ -74,6 +75,12 @@ body {
         /* Base animated gradient */
         linear-gradient(-45deg, var(--grad-color-1), var(--grad-color-2), var(--grad-color-3), var(--grad-color-4));
 	background-size: auto, auto, 400% 400%; /* Corrected: Size for each layer (repeating, repeating, base) */
+    /*
+     * Background Layers:
+     * 1. Repeating diagonal lines (45deg)
+     * 2. Repeating diagonal lines (-45deg)
+     * 3. Base animated gradient
+     */
     background-attachment: fixed; /* Keep pattern fixed during scroll */
 	animation: gradientAnimation 25s ease infinite; /* Keep animation */
 }
@@ -139,7 +146,7 @@ nav a {
     color: var(--text-color);
     text-decoration: none;
     padding: 0.6em 1.2em; /* Slightly larger padding */
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, outline 0.1s ease; /* Added outline transition */
 	border: none;
 	cursor: pointer;
     font-size: 1.1rem; /* Use rem */
@@ -147,9 +154,12 @@ nav a {
     border-radius: 4px; /* Add subtle rounding */
 }
 
-nav a:hover {
-    background-color: rgba(0, 123, 255, 0.2); /* Primary color hover */
-	transform: scale(1.05); /* Smaller hover scale */
+nav a:hover,
+nav a:focus {
+    background-color: rgba(0, 123, 255, 0.2); /* Primary color hover/focus */
+	transform: scale(1.05); /* Smaller hover/focus scale */
+    outline: 2px solid var(--focus-outline-color); /* Added focus outline */
+    outline-offset: 2px;
 }
 
 /* Resume Button Styling */
@@ -163,7 +173,7 @@ nav a:hover {
     color: var(--text-color);
     padding: 0.6em 1.2em; /* Slightly larger padding */
     text-decoration: none;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, outline 0.1s ease; /* Added outline transition */
 	border: 1px solid var(--primary-color);
     border-radius: 4px; /* Add rounding */
     font-size: 1rem;
@@ -172,6 +182,11 @@ nav a:hover {
 .resume-button a:hover {
     background-color: var(--primary-color); /* Fill with primary color */
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.5), 0 0 20px rgba(0, 123, 255, 0.3); /* Adjusted shadow */
+}
+
+.resume-button a:focus {
+    outline: 2px solid var(--focus-outline-color); /* Added focus outline */
+    outline-offset: 2px;
 }
 
 /* Profile Picture Styling */
@@ -304,7 +319,7 @@ section:hover {
 .skill-item.sql { background-color: rgba(227, 140, 0, 0.2); }
 .skill-item.html { background-color: rgba(228, 77, 38, 0.2); }
 .skill-item.css { background-color: rgba(38, 77, 228, 0.2); }
-.skill-item.js { background-color: rgba(240, 219, 79, 0.2); color: #323330;} /* Keep color override */
+.skill-item.js { background-color: rgba(240, 219, 79, 0.2); /* Removed explicit color for better contrast */ }
 .skill-item.ai-ml { background-color: rgba(76, 175, 80, 0.2); }
 
 /* Portfolio Grid Styling */
@@ -348,10 +363,10 @@ section:hover {
 
 .portfolio-item img {
     display: block; /* Remove extra space below image */
-    max-width: 50%; /* Reduced image size */
+    width: 100%; /* Allow image to fill container width */
+    max-width: 100%; /* Ensure image doesn't overflow container */
     height: auto; /* Maintain aspect ratio */
-    width: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure entire image is visible */
+    object-fit: contain; /* Ensure entire image is visible within container */
     border-radius: 4px; /* Add slight rounding to image itself */
     transition: transform 0.4s ease;
     margin: 0 auto; /* Center the image horizontally */
@@ -393,14 +408,17 @@ section:hover {
     color: var(--text-color);
     text-decoration: none;
     border-radius: 4px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, outline 0.1s ease; /* Added outline transition */
     font-size: 0.9rem;
     font-weight: 500;
 }
 
-.portfolio-link:hover {
+.portfolio-link:hover,
+.portfolio-link:focus {
     background-color: var(--secondary-color);
     transform: scale(1.03);
+    outline: 2px solid var(--focus-outline-color); /* Added focus outline */
+    outline-offset: 1px; /* Adjust offset */
 }
 
 /* Footer Styling */
@@ -441,16 +459,19 @@ footer {
     border-radius: 4px;
     border: 1px solid var(--primary-color);
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, outline 0.1s ease; /* Added outline transition */
     font-size: 0.85rem;
     vertical-align: middle;
     font-weight: 500;
 }
 
-.certificate-link:hover {
+.certificate-link:hover,
+.certificate-link:focus {
     background-color: var(--primary-color);
     color: var(--text-color);
     transform: scale(1.05);
+    outline: 2px solid var(--focus-outline-color); /* Added focus outline */
+    outline-offset: 1px;
 }
 
 /* Experience Section Styling */
@@ -515,7 +536,7 @@ footer {
     color: var(--text-color);
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, outline 0.1s ease; /* Added outline transition */
     font-size: 1rem;
     font-weight: 500;
 }
@@ -526,6 +547,10 @@ footer {
 .contact-link:hover {
     background-color: var(--secondary-color);
     transform: translateY(-3px); /* Lift effect */
+}
+.contact-link:focus {
+    outline: 2px solid var(--focus-outline-color); /* Added focus outline */
+    outline-offset: 2px;
 }
 /* Specific contact link styles (optional) */
 .contact-link.linkedin { background-color: #0077b5; }
@@ -552,14 +577,17 @@ footer {
     border-radius: 50%; /* Circular button */
     font-size: 20px; /* Adjusted size */
     opacity: 0.7;
-    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.2s ease, outline 0.1s ease; /* Added outline transition */
     line-height: 1; /* Ensure icon is centered */
 }
 
-#back-to-top-btn:hover {
+#back-to-top-btn:hover,
+#back-to-top-btn:focus {
     background-color: var(--secondary-color);
     opacity: 1;
     transform: scale(1.1); /* Add scale effect */
+    outline: 2px solid var(--focus-outline-color); /* Added focus outline */
+    outline-offset: 2px;
 }
 
 /* Loading Indicator Styling */
