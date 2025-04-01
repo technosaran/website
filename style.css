@@ -18,6 +18,7 @@
 
 html {
     font-size: 16px; /* Base font size for rem units */
+    scroll-padding-top: 7rem; /* Adjust as needed - Offset for header height during scroll navigation */
 }
 
 /* Removed global h1-h6 font-size rule to allow specific styles to create hierarchy */
@@ -25,8 +26,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0; /* Remove default top margin */
 }
 
-html, body {
-    overflow-x: hidden;
+html {
+    overflow-x: hidden; /* Apply only to html */
+}
+
+body {
     scroll-behavior: smooth; /* Enable smooth scrolling for the whole page */
 }
 

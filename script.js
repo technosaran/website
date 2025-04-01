@@ -1,4 +1,4 @@
-window.onload = async function() {
+document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('data.json');
         if (!response.ok) {
@@ -199,7 +199,7 @@ window.onload = async function() {
             }
         };
 
-        window.onscroll = scrollFunction; // Assign scroll handler
+        window.addEventListener('scroll', scrollFunction); // Use addEventListener
 
         backToTopButton.addEventListener('click', function() {
             window.scrollTo({top: 0, behavior: 'smooth'});
@@ -215,4 +215,4 @@ window.onload = async function() {
         }
     };
     setCopyrightYear(); // Call the function
-};
+});
