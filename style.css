@@ -1,0 +1,655 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* General Styling */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --text-color: #fff;
+    --background-color: #f8f9fa;
+    --light-text-color: #f0f8ff;
+    --font-family: 'Roboto', sans-serif;
+    /* Gradient Colors */
+    --grad-color-1: #0f0c29;
+    --grad-color-2: #302b63;
+    --grad-color-3: #24243e;
+    --grad-color-4: #004e92;
+}
+
+html {
+    font-size: 16px; /* Base font size for rem units */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.3rem; /* Use rem */
+    margin-top: 0; /* Remove default top margin */
+}
+
+html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* Enable smooth scrolling for the whole page */
+}
+
+@keyframes gradientAnimation {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/* Keyframes for subtle entrance animation (applied via JS) */
+@keyframes subtleFadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    color: var(--light-text-color);
+    line-height: 1.6;
+    font-size: 1.1rem; /* Adjusted base body font size */
+    /* 3D Minimalist Tech Animated Gradient Background */
+    background:
+        /* Subtle repeating lines for tech feel */
+        repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px,
+            transparent 20px /* Adjust spacing */
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, 0.01), /* Even fainter lines */
+            rgba(255, 255, 255, 0.01) 1px,
+            transparent 1px,
+            transparent 20px /* Adjust spacing */
+        ),
+        /* Base animated gradient */
+        linear-gradient(-45deg, var(--grad-color-1), var(--grad-color-2), var(--grad-color-3), var(--grad-color-4));
+	background-size: auto, auto, 400% 400%; /* Corrected: Size for each layer (repeating, repeating, base) */
+    background-attachment: fixed; /* Keep pattern fixed during scroll */
+	animation: gradientAnimation 25s ease infinite; /* Keep animation */
+}
+
+.highlight {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Header Styling */
+header {
+    background-color: rgba(15, 12, 41, 0.6); /* Adjusted alpha slightly */
+    color: var(--light-text-color);
+    padding: 2em 1em; /* Added horizontal padding */
+    text-align: center;
+    margin-bottom: 2em;
+    backdrop-filter: blur(8px); /* Slightly more blur */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Bottom border only */
+    border-top: none;
+}
+
+header h1 {
+    margin-bottom: 0.2em; /* Reduced space */
+    font-size: 3.5rem; /* Use rem */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* animation: pulse 5s infinite alternate; Removed pulsing animation */
+}
+
+header p {
+    font-size: 1.8rem; /* Use rem */
+    color: var(--light-text-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Slightly softer shadow */
+    margin-top: 0;
+}
+
+/* Social Icons Styling */
+.social-icons {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5em;
+    transition: color 0.3s ease, transform 0.3s ease; /* Updated transition */
+    margin: 0 0.5em;
+    display: inline-block;
+    font-size: 1.5rem; /* Use rem */
+}
+
+.social-icons a:hover {
+    color: var(--primary-color); /* Use primary color for hover */
+	transform: scale(1.2);
+}
+
+/* Navigation Styling */
+nav {
+    margin-top: 1.5em; /* Add space above nav */
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.6em 1.2em; /* Slightly larger padding */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+	border: none;
+	cursor: pointer;
+    font-size: 1.1rem; /* Use rem */
+    margin: 0 0.3em; /* Add slight spacing */
+    border-radius: 4px; /* Add subtle rounding */
+}
+
+nav a:hover {
+    background-color: rgba(0, 123, 255, 0.2); /* Primary color hover */
+	transform: scale(1.05); /* Smaller hover scale */
+}
+
+/* Resume Button Styling */
+.resume-button {
+    text-align: center;
+    margin-top: 1.5em; /* Increased space */
+}
+
+.resume-button a {
+    background-color: transparent;
+    color: var(--text-color);
+    padding: 0.6em 1.2em; /* Slightly larger padding */
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	border: 1px solid var(--primary-color);
+    border-radius: 4px; /* Add rounding */
+    font-size: 1rem;
+}
+
+.resume-button a:hover {
+    background-color: var(--primary-color); /* Fill with primary color */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5), 0 0 20px rgba(0, 123, 255, 0.3); /* Adjusted shadow */
+}
+
+/* Profile Picture Styling */
+.profile-picture {
+    width: 150px; /* Keep fixed size */
+    height: 150px; /* Ensure aspect ratio */
+    object-fit: cover; /* Ensure image covers area */
+    border-radius: 50%; /* Keep circular */
+    margin-right: 1.5em; /* Increased space */
+    margin-bottom: 1em;
+    border: 3px solid rgba(255, 255, 255, 0.5); /* Add subtle border */
+    flex-shrink: 0; /* Prevent image from shrinking */
+    transition: transform 0.3s ease; /* Add transition for hover */
+}
+
+.profile-picture:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+}
+
+.about-content {
+    display: flex;
+    align-items: center; /* Vertically center items */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1.5em; /* Add gap between image and text */
+}
+
+.about-text {
+    flex: 1; /* Allow text to take remaining space */
+    min-width: 250px; /* Prevent text becoming too narrow */
+}
+
+.about-text p { /* Target paragraphs specifically */
+    text-align: left;
+    color: var(--light-text-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Adjusted shadow */
+    margin-bottom: 1em; /* Space between paragraphs */
+}
+
+/* Section Styling */
+section {
+    padding: 2.5em; /* Adjusted padding */
+    margin: 1.5em auto; /* Adjusted margin */
+    background: rgba(15, 12, 41, 0.75); /* Adjusted alpha */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Softer shadow */
+    width: 90%;
+    max-width: 1100px; /* Slightly reduced max width */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px); /* Increased blur */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Even subtler border */
+}
+
+section h2 {
+    margin-bottom: 1.2em; /* Space below headings */
+    font-size: 2rem; /* Larger section headings */
+    text-align: center; /* Center section headings */
+    color: var(--primary-color); /* Use primary color for headings */
+    font-weight: 600; /* Slightly bolder */
+}
+
+section:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* Enhanced hover shadow */
+    transform: translateY(-5px);
+}
+
+/* About Section Styling */
+#about {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Skills Section Styling */
+/* (Animation handled by JS) */
+
+/* Certifications Section Styling */
+/* (Animation handled by JS) */
+
+.certifications-list {
+    list-style: none;
+    padding: 0;
+}
+
+.certifications-list li {
+    margin-bottom: 1em; /* Increased space between cert items */
+    font-size: 1rem;
+    line-height: 1.8; /* Improve line height for readability with buttons */
+    padding-left: 1.5em; /* Indent text slightly */
+    position: relative;
+}
+/* Add a small bullet point */
+.certifications-list li::before {
+    content: '🏅';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-color);
+    font-size: 0.9em;
+}
+
+
+/* Updated Skills Section Styling */
+#skills ul.skills-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#skills li.skill-item {
+    display: inline-block;
+    margin: 0.6em; /* Increased margin */
+    padding: 0.6em 1.2em; /* Increased padding */
+    font-size: 1rem; /* Adjusted size */
+    border-radius: 20px; /* Pill shape */
+    background-color: rgba(255, 255, 255, 0.08); /* Adjusted alpha */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Adjusted alpha */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+    font-weight: 500; /* Slightly bolder text */
+    opacity: 0; /* Initially hidden for JS animation */
+    /* Animation applied via JS */
+}
+
+#skills li.skill-item:hover {
+    background-color: rgba(0, 123, 255, 0.2); /* Primary color hover */
+    transform: scale(1.08); /* Slightly larger scale */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Add subtle glow */
+}
+
+/* Skill type colors - removed border, using background */
+.skill-item.java { background-color: rgba(248, 152, 32, 0.2); }
+.skill-item.python { background-color: rgba(55, 118, 171, 0.2); }
+.skill-item.sql { background-color: rgba(227, 140, 0, 0.2); }
+.skill-item.html { background-color: rgba(228, 77, 38, 0.2); }
+.skill-item.css { background-color: rgba(38, 77, 228, 0.2); }
+.skill-item.js { background-color: rgba(240, 219, 79, 0.2); color: #323330;} /* Keep color override */
+.skill-item.ai-ml { background-color: rgba(76, 175, 80, 0.2); }
+
+/* Portfolio Grid Styling */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
+    gap: 2em;
+}
+
+.portfolio-item {
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Even subtler border */
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.03); /* Even more subtle background */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0; /* Initially hidden for JS animation */
+    /* Animation applied via JS */
+}
+
+.portfolio-item:hover {
+    transform: translateY(-6px); /* Slightly more lift */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-item .image-container { /* Container for image */
+    width: 100%;
+    overflow: hidden; /* Keep overflow hidden */
+    border-radius: 4px; /* Keep rounding */
+    margin-bottom: 1.5em; /* Keep space below */
+    background-color: rgba(255, 255, 255, 0.05); /* Keep placeholder bg */
+    display: flex; /* Center image within container */
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Prevent image container from shrinking */
+    /* height: 180px; Removed fixed height */
+}
+
+.portfolio-item img {
+    display: block; /* Remove extra space below image */
+    max-width: 50%; /* Reduced image size */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure entire image is visible */
+    border-radius: 4px; /* Add slight rounding to image itself */
+    transition: transform 0.4s ease;
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.08);
+}
+
+.portfolio-item h3 {
+    margin-top: 0; /* Ensure no extra top margin */
+    font-size: 1.4rem;
+    margin-bottom: 0.8em; /* Increased space below h3 */
+    color: var(--primary-color);
+    flex-shrink: 0; /* Prevent heading from shrinking */
+}
+.portfolio-item p {
+    margin-top: 0; /* Ensure no extra top margin */
+    margin-bottom: 1em; /* Space below paragraph */
+    flex-grow: 1; /* Pushes links down */
+    flex-shrink: 0; /* Prevent paragraph from shrinking unduly */
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85); /* Slightly brighter text */
+}
+
+/* Styles for portfolio links */
+.portfolio-links {
+    margin-top: auto; /* Pushes to bottom because p has flex-grow: 1 */
+    text-align: center;
+    padding-top: 1em;
+    flex-shrink: 0; /* Prevent links container from shrinking */
+}
+
+.portfolio-link {
+    display: inline-block;
+    margin: 0.3em 0.5em;
+    padding: 0.6em 1.2em; /* Increased padding */
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.portfolio-link:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.03);
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 2.5em 1em; /* Increased padding */
+    background-color: rgba(15, 12, 41, 0.8); /* Adjusted alpha */
+    color: var(--light-text-color);
+    margin-top: 3em; /* Increased space */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Match section border */
+    border-bottom: none; /* Remove bottom border */
+}
+
+#footer-quote {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5em; /* Increased space */
+}
+
+/* Copyright Styling */
+.copyright {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1.5em; /* Increased space */
+}
+
+
+/* Certification Link Styling (Redesigned & Smaller) */
+.certificate-link {
+    display: inline-block;
+    padding: 0.4em 0.9em; /* Adjusted padding */
+    margin-left: 0.6em; /* Adjusted margin */
+    background-color: transparent;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-size: 0.85rem;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+.certificate-link:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    transform: scale(1.05);
+}
+
+/* Experience Section Styling */
+.experience-list {
+    list-style: none;
+    padding: 0;
+}
+
+.experience-item {
+    margin-bottom: 1.8em; /* Increased space */
+    padding-bottom: 1.2em; /* Increased space */
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.15); /* Even subtler dash */
+    opacity: 0; /* Initially hidden for JS animation */
+    /* Animation applied via JS */
+}
+
+.experience-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.experience-item h4 {
+    margin-bottom: 0.3em; /* Adjusted space */
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.experience-item .duration {
+    font-style: italic;
+    color: var(--secondary-color);
+    margin-bottom: 0.6em; /* Adjusted space */
+    font-size: 0.9rem;
+    display: block; /* Ensure it takes its own line */
+}
+
+.experience-item p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Contact Section Styling */
+#contact {
+    text-align: center; /* Center align content */
+}
+#contact p {
+    margin-bottom: 1.5em;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+.contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5em; /* Space between links */
+}
+.contact-link {
+    display: inline-flex; /* Use flex for icon alignment */
+    align-items: center;
+    padding: 0.8em 1.5em;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.contact-link i {
+    margin-right: 0.6em; /* Space between icon and text */
+    font-size: 1.2em; /* Slightly larger icon */
+}
+.contact-link:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px); /* Lift effect */
+}
+/* Specific contact link styles (optional) */
+.contact-link.linkedin { background-color: #0077b5; }
+.contact-link.email { background-color: #d44638; }
+.contact-link.github { background-color: #333; }
+.contact-link.linkedin:hover { background-color: #005e90; }
+.contact-link.email:hover { background-color: #b03428; }
+.contact-link.github:hover { background-color: #555; }
+
+
+/* Back to Top Button Styling */
+#back-to-top-btn {
+    display: none;
+    position: fixed;
+    bottom: 25px; /* Adjusted position */
+    right: 25px; /* Adjusted position */
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 12px 16px; /* Adjusted padding */
+    border-radius: 50%; /* Circular button */
+    font-size: 20px; /* Adjusted size */
+    opacity: 0.7;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+    line-height: 1; /* Ensure icon is centered */
+}
+
+#back-to-top-btn:hover {
+    background-color: var(--secondary-color);
+    opacity: 1;
+    transform: scale(1.1); /* Add scale effect */
+}
+
+/* Loading Indicator Styling */
+.loading-indicator {
+    text-align: center;
+    padding: 2em;
+    color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    font-style: italic;
+    width: 100%; /* Ensure it takes full width within its container */
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Larger Screens (Desktops, Laptops, TVs) */
+@media (min-width: 1201px) {
+    html {
+        font-size: 17px;
+    }
+    section {
+        padding: 3.5em 4.5em; /* Increased padding */
+    }
+    header h1 { font-size: 4rem; }
+    header p { font-size: 2rem; }
+}
+
+/* Tablets and Small Laptops */
+@media (max-width: 992px) {
+    html {
+        font-size: 15px;
+    }
+    header h1 { font-size: 3rem; }
+    header p { font-size: 1.6rem; }
+    section { padding: 2.5em; } /* Adjusted padding */
+    .about-content { flex-direction: column; text-align: center; }
+    .profile-picture { margin: 0 auto 1.5em auto; }
+    .about-text { margin-left: 0; text-align: center; }
+    .about-text p { text-align: justify; }
+}
+
+/* Smaller Tablets and Large Phones (Landscape) */
+@media (max-width: 768px){
+    html {
+        font-size: 14px;
+    }
+    header { padding: 1.5em 1em; }
+    header h1 { font-size: 2.8rem; }
+    header p { font-size: 1.4rem; }
+    nav a { font-size: 1rem; padding: 0.5em 1em; margin: 0 0.1em; } /* Adjusted nav padding/margin */
+    section { padding: 2em 1.5em; width: 95%; } /* Adjusted padding (added horizontal) */
+    section h2 { font-size: 1.8rem; } /* Smaller headings */
+    .portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5em; }
+    .social-icons a { font-size: 1.4rem; }
+    #footer-quote, .copyright { font-size: 0.9rem; }
+    #back-to-top-btn { bottom: 20px; right: 20px; padding: 10px 14px; font-size: 18px; }
+    .certifications-list li { font-size: 0.95rem; padding-left: 1.2em; }
+    .certifications-list li::before { font-size: 0.8em; }
+    .certificate-link { font-size: 0.8rem; padding: 0.3em 0.8em; }
+    .experience-item h4 { font-size: 1.1rem; }
+    .experience-item p, .experience-item .duration { font-size: 0.9rem; }
+    .contact-links { gap: 1em; }
+    .contact-link { font-size: 0.9rem; padding: 0.7em 1.2em; }
+}
+
+/* Mobile Phones (Portrait) */
+@media (max-width: 480px) {
+    html {
+        font-size: 14px; /* Increased base slightly for better readability */
+    }
+    header { padding: 1.5em 0.5em; } /* Increased padding */
+    header h1 { font-size: 2.4rem; } /* Adjusted size */
+    header p { font-size: 1.3rem; } /* Adjusted size */
+    nav a { font-size: 1rem; padding: 0.5em 1em; display: block; margin: 0.5em auto; width: fit-content; } /* Adjusted nav margin */
+    nav { margin-top: 1em; }
+    section { padding: 1.5em; } /* Adjusted padding */
+    section h2 { font-size: 1.6rem; } /* Smaller headings */
+    .portfolio-grid { grid-template-columns: 1fr; gap: 1.5em; } /* Increased gap */
+    .portfolio-item .image-container { /* height: 160px; Removed fixed height for mobile */ }
+    .social-icons a { font-size: 1.4rem; margin: 0 0.4em; } /* Increased size/spacing */
+    #footer-quote, .copyright { font-size: 0.85rem; } /* Adjusted footer text size */
+    #back-to-top-btn { bottom: 15px; right: 15px; padding: 8px 12px; font-size: 16px; }
+    .certifications-list li { font-size: 0.9rem; line-height: 1.8; padding-left: 0; } /* Remove indent */
+    .certifications-list li::before { display: none; } /* Hide bullet */
+    .certificate-link { font-size: 0.8rem; padding: 0.4em 0.8em; display: block; width: fit-content; margin: 0.5em auto 0 auto; } /* Stack button */
+    .profile-picture { width: 120px; height: 120px; } /* Adjusted size */
+    .about-content { gap: 1em; }
+    .about-text p { text-align: left; } /* Align left on mobile */
+    .experience-item h4 { font-size: 1.05rem; }
+    .experience-item p, .experience-item .duration { font-size: 0.9rem; }
+    #skills li.skill-item { font-size: 0.95rem; padding: 0.5em 1em; margin: 0.4em; } /* Adjusted skills */
+    .contact-links { flex-direction: column; align-items: center; gap: 0.8em; } /* Stack contact links */
+    .contact-link { width: 80%; text-align: center; justify-content: center; } /* Full width links */
+}

@@ -1,0 +1,26 @@
+{
+  "portfolio": [
+    {
+      "title": "Personal Portfolio",
+      "description": "My personal website showcasing projects, skills, and experience. (Built with HTML, CSS, JS)",
+      "image": "portfolio pic.jpg",
+      "liveLink": "https://technosaran.github.io/portfolio/",
+      "sourceLink": "https://github.com/techno-saran/technosaran.github.io"
+    }
+  ],
+  "skills": [
+    { "name": "Java", "class": "java" },
+    { "name": "Python", "class": "python" },
+    { "name": "SQL", "class": "sql" },
+    { "name": "HTML", "class": "html" },
+    { "name": "CSS", "class": "css" }
+  ],
+  "experience": [
+    {
+      "role": "Java Programming Intern",
+      "company": "CodSoft",
+      "duration": "March 2025 - April 2025",
+      "description": "Completed a 4-week virtual internship focused on Java programming, gaining hands-on experience by developing assigned projects and enhancing technical skills."
+    }
+  ]
+}
