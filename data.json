@@ -8,19 +8,36 @@
       "sourceLink": "https://github.com/techno-saran/technosaran.github.io"
     }
   ],
-  "skills": [
-    { "name": "Java", "class": "java" },
-    { "name": "Python", "class": "python" },
-    { "name": "SQL", "class": "sql" },
-    { "name": "HTML", "class": "html" },
-    { "name": "CSS", "class": "css" }
-  ],
+  "skills": {
+    "Programming Languages": [
+      { "name": "Java", "class": "java" },
+      { "name": "Python", "class": "python" },
+      { "name": "SQL", "class": "sql" }
+    ],
+    "Web Technologies": [
+      { "name": "HTML", "class": "html" },
+      { "name": "CSS", "class": "css" },
+      { "name": "JavaScript", "class": "js" }
+    ],
+    "AI / Machine Learning": [
+      { "name": "Machine Learning Concepts", "class": "ai-ml" }
+    ]
+  },
   "experience": [
     {
       "role": "Java Programming Intern",
       "company": "CodSoft",
       "duration": "March 2025 - April 2025",
       "description": "Completed a 4-week virtual internship focused on Java programming, gaining hands-on experience by developing assigned projects and enhancing technical skills."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology (B.Tech)",
+      "major": "Artificial Intelligence and Machine Learning",
+      "institution": "Panimalar Engineering College, Chennai",
+      "duration": "2023 - Present",
+      "details": "Currently pursuing a degree focused on AI, ML, data science, and software development principles."
     }
   ]
 }

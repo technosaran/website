@@ -291,10 +291,30 @@ section:hover {
 
 
 /* Updated Skills Section Styling */
-#skills ul.skills-list {
+#skills ul.skills-list { /* This is now the main container, not just for list items */
     list-style: none;
     padding: 0;
-    text-align: center;
+    /* text-align: center; Removed, handled by category container */
+}
+
+.skills-category-heading {
+    font-size: 1.4rem; /* Slightly smaller than section h2 */
+    color: var(--light-text-color); /* Lighter color for sub-heading */
+    margin-top: 1.5em; /* Space above category heading */
+    margin-bottom: 0.8em; /* Space below category heading */
+    text-align: left; /* Align category headings left */
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle separator */
+    padding-bottom: 0.3em;
+}
+
+.skills-category-heading:first-of-type {
+    margin-top: 0; /* No top margin for the very first category */
+}
+
+.skills-category-container {
+    text-align: center; /* Center the skill items within this container */
+    margin-bottom: 1em; /* Space below a group of skills */
 }
 
 #skills li.skill-item {
@@ -317,14 +337,14 @@ section:hover {
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Add subtle glow */
 }
 
-/* Skill type colors - removed border, using background */
-.skill-item.java { background-color: rgba(248, 152, 32, 0.2); }
-.skill-item.python { background-color: rgba(55, 118, 171, 0.2); }
-.skill-item.sql { background-color: rgba(227, 140, 0, 0.2); }
-.skill-item.html { background-color: rgba(228, 77, 38, 0.2); }
-.skill-item.css { background-color: rgba(38, 77, 228, 0.2); }
-.skill-item.js { background-color: rgba(240, 219, 79, 0.2); /* Removed explicit color for better contrast */ }
-.skill-item.ai-ml { background-color: rgba(76, 175, 80, 0.2); }
+/* Skill type colors - removed border, using background (Increased opacity for better contrast) */
+.skill-item.java { background-color: rgba(248, 152, 32, 0.3); }
+.skill-item.python { background-color: rgba(55, 118, 171, 0.3); }
+.skill-item.sql { background-color: rgba(227, 140, 0, 0.3); }
+.skill-item.html { background-color: rgba(228, 77, 38, 0.3); }
+.skill-item.css { background-color: rgba(38, 77, 228, 0.3); }
+.skill-item.js { background-color: rgba(240, 219, 79, 0.3); }
+.skill-item.ai-ml { background-color: rgba(76, 175, 80, 0.3); }
 
 /* Portfolio Grid Styling */
 .portfolio-grid {
@@ -516,6 +536,53 @@ footer {
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.85);
 }
+
+/* Education Section Styling */
+.education-list {
+    list-style: none;
+    padding: 0;
+}
+
+.education-item {
+    margin-bottom: 1.8em; /* Consistent spacing */
+    padding-bottom: 1.2em; /* Consistent spacing */
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.15); /* Consistent border */
+    opacity: 0; /* Initially hidden for JS animation */
+    /* Animation applied via JS */
+}
+
+.education-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.education-item h4 {
+    margin-bottom: 0.3em; /* Consistent spacing */
+    color: var(--primary-color); /* Consistent color */
+    font-size: 1.2rem; /* Consistent size */
+    font-weight: 600; /* Consistent weight */
+}
+
+.education-item .institution {
+    font-weight: 500; /* Slightly emphasize institution */
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.3em;
+    font-size: 1rem;
+}
+
+.education-item .duration {
+    font-style: italic;
+    color: var(--secondary-color); /* Consistent color */
+    margin-bottom: 0.6em; /* Consistent spacing */
+    font-size: 0.9rem; /* Consistent size */
+    display: block; /* Consistent display */
+}
+
+.education-item p:not(.duration):not(.institution) { /* Target the details paragraph */
+    font-size: 0.95rem; /* Consistent size */
+    color: rgba(255, 255, 255, 0.85); /* Consistent color */
+}
+
 
 /* Contact Section Styling */
 #contact {

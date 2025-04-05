@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const SKILL_ANIM_DELAY = 0.08;
         const EXPERIENCE_ANIM_DURATION = 0.5;
         const EXPERIENCE_ANIM_DELAY = 0.15;
+        const EDUCATION_ANIM_DURATION = 0.5; // Added for Education
+        const EDUCATION_ANIM_DELAY = 0.15; // Added for Education
 
         // --- Helper Functions ---
 
@@ -36,6 +38,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         // --- Population Functions ---
+
+        const populateEducation = (educationData) => {
+            const educationList = document.querySelector('.education-list');
+            if (!educationList) return;
+
+            try {
+                if (!Array.isArray(educationData)) {
+                    throw new Error("Education data is not an array.");
+                }
+                const loadingIndicator = educationList.querySelector('.loading-indicator'); // Check for loading indicator if added
+                if (loadingIndicator) loadingIndicator.remove();
+
+                const educationItems = [];
+                educationData.forEach(edu => {
+                    const educationItem = document.createElement('li');
+                    educationItem.classList.add('education-item'); // Add class for potential styling/animation
+                    educationItem.innerHTML = `
+                        <h4>${edu.degree || 'Degree'} in ${edu.major || 'Major'}</h4>
+                        <p class="institution">${edu.institution || 'Institution'}</p>
+                        <p class="duration">${edu.duration || ''}</p>
+                        <p>${edu.details || ''}</p>
+                    `;
+                    educationList.appendChild(educationItem);
+                    educationItems.push(educationItem);
+                });
+                applyStaggeredAnimation(educationItems, ANIMATION_NAME, EDUCATION_ANIM_DURATION, EDUCATION_ANIM_DELAY);
+            } catch (error) {
+                console.error("Error populating education:", error);
+                displaySectionError('.education-list', 'Failed to load education details.');
+            }
+        };
 
         const populatePortfolio = (portfolioData) => {
             const portfolioGrid = document.querySelector('.portfolio-grid');
@@ -81,24 +114,51 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!skillsList) return;
 
             try {
-                if (!Array.isArray(skillsData)) {
-                    throw new Error("Skills data is not an array.");
+                // Check if skillsData is an object (for categories)
+                if (typeof skillsData !== 'object' || skillsData === null || Array.isArray(skillsData)) {
+                    throw new Error("Skills data is not in the expected category format (object).");
                 }
                 const loadingIndicator = skillsList.querySelector('.loading-indicator');
                 if (loadingIndicator) loadingIndicator.remove();
 
-                const skillItems = [];
-                skillsData.forEach(skill => {
-                    const skillItem = document.createElement('li');
-                    skillItem.classList.add('skill-item', skill.class || '');
-                    skillItem.textContent = skill.name || 'Unnamed Skill';
-                    skillsList.appendChild(skillItem);
-                    skillItems.push(skillItem);
-                });
-                applyStaggeredAnimation(skillItems, ANIMATION_NAME, SKILL_ANIM_DURATION, SKILL_ANIM_DELAY);
+                skillsList.innerHTML = ''; // Clear existing content/loading indicator
+                const allSkillItems = []; // Collect all skill items for animation
+
+                for (const category in skillsData) {
+                    if (skillsData.hasOwnProperty(category)) {
+                        // Create category heading
+                        const categoryHeading = document.createElement('h3');
+                        categoryHeading.classList.add('skills-category-heading');
+                        categoryHeading.textContent = category;
+                        skillsList.appendChild(categoryHeading);
+
+                        // Create container for skills in this category
+                        const categorySkillsContainer = document.createElement('div');
+                        categorySkillsContainer.classList.add('skills-category-container');
+                        skillsList.appendChild(categorySkillsContainer);
+
+                        const skillsInCategory = skillsData[category];
+                        if (!Array.isArray(skillsInCategory)) {
+                             console.warn(`Skills data for category "${category}" is not an array.`);
+                             continue; // Skip this category if data is malformed
+                        }
+
+                        // Add skills to the container
+                        skillsInCategory.forEach(skill => {
+                            const skillItem = document.createElement('li');
+                            skillItem.classList.add('skill-item', skill.class || '');
+                            skillItem.textContent = skill.name || 'Unnamed Skill';
+                            categorySkillsContainer.appendChild(skillItem);
+                            allSkillItems.push(skillItem); // Add to the list for animation
+                        });
+                    }
+                }
+                // Apply animation to all collected skill items
+                applyStaggeredAnimation(allSkillItems, ANIMATION_NAME, SKILL_ANIM_DURATION, SKILL_ANIM_DELAY);
             } catch (error) {
                 console.error("Error populating skills:", error);
-                displaySectionError('.skills-list', 'Failed to load skills.');
+                skillsList.innerHTML = ''; // Clear list on error
+                displaySectionError('#skills', 'Failed to load skills.'); // Display error within the section
             }
         };
 
@@ -133,6 +193,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         // --- Main Execution ---
+        populateEducation(data.education); // Call the new function
         populatePortfolio(data.portfolio);
         populateSkills(data.skills);
         populateExperience(data.experience);
@@ -144,6 +205,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         displaySectionError('.portfolio-grid', 'Failed to load portfolio projects. Please try refreshing the page.');
         displaySectionError('.skills-list', 'Failed to load skills.');
         displaySectionError('.experience-list', 'Failed to load experience.');
+        displaySectionError('.education-list', 'Failed to load education details.'); // Add error display for education
     }
 
     // --- Footer Quote ---
