@@ -87,7 +87,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     portfolioItem.classList.add('portfolio-item');
                     const liveLink = item.liveLink && item.liveLink !== '#' ? item.liveLink : null;
                     const sourceLink = item.sourceLink && item.sourceLink !== '#' ? item.sourceLink : null;
-                    const imageHtml = `<img src="${item.image}" alt="Screenshot of ${item.title}" loading="lazy">`;
+                    // Use item.alt if available, otherwise fallback to a generic alt text
+                    const altText = item.alt || `Screenshot of ${item.title || 'project'}`;
+                    const imageHtml = `<img src="${item.image}" alt="${altText}" loading="lazy">`;
                     const imageContainerContent = liveLink ? `<a href="${liveLink}" target="_blank" rel="noopener noreferrer">${imageHtml}</a>` : imageHtml;
                     let linksHtml = '';
                     if (liveLink) linksHtml += `<a href="${liveLink}" target="_blank" rel="noopener noreferrer" class="portfolio-link">Live Demo</a>`;

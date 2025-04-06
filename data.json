@@ -4,6 +4,7 @@
       "title": "Personal Portfolio",
       "description": "My personal website showcasing projects, skills, and experience. (Built with HTML, CSS, JS)",
       "image": "portfolio pic.jpg",
+      "alt": "Screenshot of Saran's personal portfolio website homepage",
       "liveLink": "https://technosaran.github.io/portfolio/",
       "sourceLink": "https://github.com/techno-saran/technosaran.github.io"
     }

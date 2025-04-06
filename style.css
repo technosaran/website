@@ -338,13 +338,13 @@ section:hover {
 }
 
 /* Skill type colors - removed border, using background (Increased opacity for better contrast) */
-.skill-item.java { background-color: rgba(248, 152, 32, 0.3); }
-.skill-item.python { background-color: rgba(55, 118, 171, 0.3); }
-.skill-item.sql { background-color: rgba(227, 140, 0, 0.3); }
-.skill-item.html { background-color: rgba(228, 77, 38, 0.3); }
-.skill-item.css { background-color: rgba(38, 77, 228, 0.3); }
-.skill-item.js { background-color: rgba(240, 219, 79, 0.3); }
-.skill-item.ai-ml { background-color: rgba(76, 175, 80, 0.3); }
+.skill-item.java { background-color: rgba(248, 152, 32, 0.4); } /* Increased opacity */
+.skill-item.python { background-color: rgba(55, 118, 171, 0.4); } /* Increased opacity */
+.skill-item.sql { background-color: rgba(227, 140, 0, 0.4); } /* Increased opacity */
+.skill-item.html { background-color: rgba(228, 77, 38, 0.4); } /* Increased opacity */
+.skill-item.css { background-color: rgba(38, 77, 228, 0.4); } /* Increased opacity */
+.skill-item.js { background-color: rgba(240, 219, 79, 0.4); } /* Increased opacity */
+.skill-item.ai-ml { background-color: rgba(76, 175, 80, 0.4); } /* Increased opacity */
 
 /* Portfolio Grid Styling */
 .portfolio-grid {
